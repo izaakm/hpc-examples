@@ -63,6 +63,7 @@ See also
 - ColabFold
     - https://github.com/sokrypton/ColabFold
     - https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb
+    - https://medium.com/advances-in-biological-science/how-to-predict-structures-with-alphafold-2-using-colabfold-89d858d2d356
 - https://github.com/lipan6461188/AlphaFold-StepByStep
 
 
