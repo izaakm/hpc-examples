@@ -1,0 +1,1 @@
+export ALPHAFOLD_IMAGE=${ALPHFOLD_IMAGE:-/sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif}

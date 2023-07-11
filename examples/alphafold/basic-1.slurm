@@ -86,10 +86,6 @@
 
 # cd /lustre/isaac/scratch/jmill165/
 
-export ALPHAFOLD_DATA_PATH="/lustre/isaac/examples/data/"
-export ALPHAFOLD_MODELS="/lustre/isaac/examples/data/alphafold/params/"
-export DOWNLOAD_DIR="/lustre/isaac/examples/data/alphafold"
-
 # /lustre/isaac/examples/data/alphafold/
 #   bfd/
 #   mgnify/
@@ -123,6 +119,10 @@ export DOWNLOAD_DIR="/lustre/isaac/examples/data/alphafold"
 #     --uniclust30_database_path=/lustre/isaac/scratch/kkalhor/data/uniref30/UniRef30_2021_03 \
 #     --uniref90_database_path=/lustre/isaac/scratch/kkalhor/data/uniref90/uniref90.fasta \
 
+export DATADIR="/lustre/isaac/examples/data/"
+export ALPHAFOLD_DIR="${DATADIR}/alphafold"
+# export ALPHAFOLD_PARAMS="${DATADIR}/alphafold/params/"
+
 export FASTA="/nfs/home/jmill165/data/downloads/P01308.fasta"
 export OUTPUT_DIR="/lustre/isaac/scratch/jmill165/data/outputs/$(date +%s)"
 
@@ -131,10 +131,9 @@ mkdir -pv $OUTPUT_DIR
 singularity \
     exec \
     --nv \
-    -B $ALPHAFOLD_DATA_PATH:/alphafold-data \
-    -B $ALPHAFOLD_MODELS:/alphafold-models \
+    -B $DATADIR:/alphafold-data \
     -B $OUTPUT_DIR:/my-outputs \
-    -B $DOWNLOAD_DIR:/alphafold-downloads \
+    -B $ALPHAFOLD_DIR:/alphafold-downloads \
     -B .:/etc \
     /sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif \
     /app/run_alphafold.sh \

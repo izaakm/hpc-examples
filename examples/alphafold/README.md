@@ -1,5 +1,6 @@
 % AlphaFold
 
+1. Download reference data
 
 ```
 $ ALPHAFOLD=/sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif
