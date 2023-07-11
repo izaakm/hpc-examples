@@ -57,6 +57,12 @@ Try --helpfull to get a list of all flags.
 See also
 ========
 
+- Official
+    - https://github.com/deepmind/alphafold
+    - https://colab.research.google.com/github/deepmind/alphafold/blob/main/notebooks/AlphaFold.ipynb
+- ColabFold
+    - https://github.com/sokrypton/ColabFold
+    - https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb
 - https://github.com/lipan6461188/AlphaFold-StepByStep
 
 
