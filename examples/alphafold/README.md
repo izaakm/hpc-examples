@@ -1,4 +1,7 @@
+% AlphaFold
 
+
+```
 $ ALPHAFOLD=/sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif
 $ singularity shell -B /lustre/isaac/examples/data:/data $ALPHAFOLD
 Singularity> cd /app/
@@ -48,3 +51,4 @@ flags:
   --uniref90_database_path: Path to the Uniref90 database for use by JackHMMER.
 
 Try --helpfull to get a list of all flags.
+```
