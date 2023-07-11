@@ -1,15 +1,15 @@
 #!/bin/bash -l
 #SBATCH --account ISAAC-STA0005
+#SBATCH --partition=campus-gpu    # If not specified then default is "campus"
+#SBATCH --qos=campus-gpu 
+#SBATCH --export=ALL,SHELL=/bin/bash
 #SBATCH --chdir=/lustre/isaac/scratch/jmill165/
 #SBATCH --exclusive
-#SBATCH --export=ALL,SHELL=/bin/bash
 #SBATCH --gpus=1
 #SBATCH --cpus-per-gpu=48
 #SBATCH --job-name alphafold-basic
 #SBATCH --nodes=1                 # Number of nodes
-#SBATCH --output=job-%J.o         # The file where the output of the terminal will be dumped
-#SBATCH --partition=campus-gpu    # If not specified then default is "campus"
-#SBATCH --qos=campus-gpu 
+#SBATCH --output=jobs/job-%J.o         # The file where the output of the terminal will be dumped
 #SBATCH --time=0-24:00:00         # Wall time (days-hh:mm:ss)
 ############################################################
 # #SBATCH --mem=0
