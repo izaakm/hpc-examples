@@ -53,3 +53,11 @@ flags:
 
 Try --helpfull to get a list of all flags.
 ```
+
+See also
+========
+
+- https://github.com/lipan6461188/AlphaFold-StepByStep
+
+
+<!-- END -->
