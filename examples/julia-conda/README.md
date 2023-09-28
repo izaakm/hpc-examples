@@ -12,3 +12,5 @@ Install julia from conda
 ```
 conda create -n julia -c conda-forge julia
 ```
+
+https://anaconda.org/conda-forge/julia
