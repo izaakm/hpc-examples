@@ -28,6 +28,6 @@ hostname
 free -h
 
 ###########   Show all the filesystems   ###############
-df -h -x tmpfx
+df -h -x tmpfs
 
 exit 0
