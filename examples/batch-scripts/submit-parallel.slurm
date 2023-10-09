@@ -15,6 +15,7 @@ module load parallel
 # Define srun arguments:
 srun="srun -n1 -N1 --exclusive"
 # --exclusive     ensures srun uses distinct CPUs for each job step
+# note that exclusive has slightly different meaning when used with srun vs sbatch. with sbatch, usually means exclusive node, but with srun can mean exclusive cpus.
 # -N1 -n1         allocates a single core to each task
 
 # Define parallel arguments:
