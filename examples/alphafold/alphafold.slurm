@@ -1,16 +1,16 @@
 #!/bin/bash -l
 #SBATCH --account ISAAC-STA0005
-#SBATCH --partition=campus-gpu
-#SBATCH --qos=campus-gpu 
-#SBATCH --export=ALL,SHELL=/bin/bash
-#SBATCH --chdir=/lustre/isaac/scratch/jmill165/
-#SBATCH --exclusive
-#SBATCH --gpus=1
-#SBATCH --cpus-per-gpu=48
+#SBATCH --partition campus-gpu
+#SBATCH --qos campus-gpu 
+#SBATCH --export ALL,SHELL=/bin/bash
+#SBATCH --chdir /lustre/isaac/scratch/jmill165/
+#SBATCH --gpus 1
+#SBATCH --cpus-per-gpu 48
 #SBATCH --job-name alphafold-basic
-#SBATCH --nodes=1
-#SBATCH --output=jobs/job-%J.o
-#SBATCH --time=0-24:00:00
+#SBATCH --nodes 1
+#SBATCH --output job-%J.o
+#SBATCH --time 24:00:00
+###SBATCH --exclusive
 
 
 source /usr/share/Modules/init/bash
