@@ -13,6 +13,11 @@
 #SBATCH --time=0-24:00:00
 
 
+source /usr/share/Modules/init/bash
+module load alphafold/2.0.0
+# export ALPHAFOLD_IMAGE=${ALPHAFOLD_IMAGE:-/sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif}
+
+
 # --data_dir=/alphafold-downloads
 export DATADIR="/lustre/isaac/examples/data/"
 
