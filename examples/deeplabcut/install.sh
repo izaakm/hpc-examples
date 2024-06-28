@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH --account AFC-UTK0011
+#SBATCH --account acf-utk0011
 #SBATCH --partition campus-gpu-large
 #SBATCH --qos campus-gpu
 #SBATCH --gpus 1
