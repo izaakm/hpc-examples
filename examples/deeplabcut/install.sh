@@ -19,7 +19,7 @@ source /usr/share/Modules/init/bash
 module load anaconda3/2023.09
 source $ANACONDA3_SH
 
-conda create --prefix "$SCRATCHDIR/.conda/envs/${env_name}" deeplabcut ipykernel --yes
+conda create --prefix "$SCRATCHDIR/.conda/envs/${env_name}" deeplabcut ipykernel ipywidgets --yes
 conda activate "$SCRATCHDIR/.conda/envs/${env_name}"
 
 python -m ipykernel install --user --name "${env_name}" --display-name "Python (${env_name})"
