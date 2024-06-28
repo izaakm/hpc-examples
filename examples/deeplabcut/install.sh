@@ -9,16 +9,18 @@
 
 set -e
 
+readonly env_name="${1:-deeplabcut}"
+
 nvidia-smi --list-gpus
 
 source /usr/share/Modules/init/bash
 module load anaconda3/2023.09
 source $ANACONDA3_SH
 
-conda create --prefix $SCRATCHDIR/.conda/envs/DEEPLABCUT deeplabcut ipykernel --yes
-conda activate DEEPLABCUT
+conda create --prefix "$SCRATCHDIR/.conda/envs/${env_name}" deeplabcut ipykernel --yes
+conda activate "$SCRATCHDIR/.conda/envs/${env_name}"
 
-python -m ipykernel install --user --name DEEPLABCUT --display-name "Python (DEEPLABCUT)"
+python -m ipykernel install --user --name "${env_name}" --display-name "Python (${env_name})"
 
 python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
 
