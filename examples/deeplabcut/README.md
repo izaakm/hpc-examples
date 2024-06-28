@@ -95,9 +95,11 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
 2024-06-28 09:32:03.369105: I tensorflow/core/util/port.cc:104] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
 ```
 
+Test that you can import the `tensorflow` library and that it can find the GPU:
+
 ```python
 import tensorflow as tf
-print(tf.config.list_physical_devices('GPU'))
+tf.config.list_physical_devices('GPU')
 ```
 
 ```output
