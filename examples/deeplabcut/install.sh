@@ -11,6 +11,8 @@ set -e
 
 readonly env_name="${1:-deeplabcut}"
 
+echo "[$(date)] Setting up conda env with name \"${env_name}\""
+
 nvidia-smi --list-gpus
 
 source /usr/share/Modules/init/bash
@@ -23,5 +25,7 @@ conda activate "$SCRATCHDIR/.conda/envs/${env_name}"
 python -m ipykernel install --user --name "${env_name}" --display-name "Python (${env_name})"
 
 python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+
+echo "[$(date)] Set up complete."
 
 exit 0
