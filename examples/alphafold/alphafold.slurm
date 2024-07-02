@@ -3,12 +3,13 @@
 #SBATCH --partition campus-gpu-bigmem
 #SBATCH --qos campus-gpu 
 #SBATCH --nodes 1
+#SBATCH --ntasks 1
 #SBATCH --gpus 1
 #SBATCH --cpus-per-gpu 48
-#SBATCH --job-name alphafold-basic
 #SBATCH --time 24:00:00
-#SBATCH --output %j-%x.o
-#SBATCH --chdir /lustre/isaac/scratch/jmill165/
+#SBATCH --job-name alphafold-basic
+#SBATCH --chdir /lustre/isaac/scratch/jmill165
+#SBATCH --output jobs/latest/%j-%x.o
 ###SBATCH --export ALL,SHELL=/bin/bash
 ###SBATCH --exclusive
 
@@ -31,7 +32,8 @@ export DATADIR="/lustre/isaac/examples/data/"
 export ALPHAFOLD_DIR="/lustre/isaac/examples/data/alphafold"
 
 # Input.
-export FASTA="/nfs/home/jmill165/data/downloads/P01308.fasta"
+# export FASTA="/nfs/home/jmill165/data/downloads/P01308.fasta"
+export FASTA="/lustre/isaac/scratch/jmill165/examples/examples/alphafold/P01308.fasta"
 
 # Output.
 export OUTPUT_DIR="/lustre/isaac/scratch/jmill165/data/outputs/$(date +%s)"
