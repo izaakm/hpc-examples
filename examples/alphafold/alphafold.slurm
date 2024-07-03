@@ -36,30 +36,29 @@ export ALPHAFOLD_DIR="/lustre/isaac/examples/data/alphafold"
 export FASTA="/lustre/isaac/scratch/jmill165/examples/examples/alphafold/P01308.fasta"
 
 # Output.
-export OUTPUT_DIR="/lustre/isaac/scratch/jmill165/data/outputs/$(date +%s)"
+export OUTPUT_DIR="/lustre/isaac/scratch/jmill165/data/outputs/alphafold/$(date +%s)"
 
 mkdir -pv $OUTPUT_DIR
 
 singularity \
     exec \
     --nv \
-    -B $DATADIR:/alphafold-data \
-    -B $ALPHAFOLD_DIR:/alphafold-downloads \
-    -B $OUTPUT_DIR:/my-outputs \
+    -B $OUTPUT_DIR:/output \
+    -B $ALPHAFOLD_DIR:/alphafold \
     -B .:/etc \
     /sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif \
     /app/run_alphafold.sh \
     --fasta_paths="$FASTA" \
-    --data_dir=/alphafold-downloads \
-    --output_dir=/my-outputs \
+    --data_dir="/alphafold" \
+    --output_dir=/output \
     --model_names=model_1 \
     --max_template_date=2020-05-14 \
-    --uniref90_database_path=/alphafold-data/alphafold/uniref90/uniref90.fasta \
-    --mgnify_database_path=/alphafold-data/alphafold/mgnify/mgy_clusters_2022_05.fa \
-    --uniclust30_database_path=/alphafold-data/alphafold/uniref30/UniRef30_2021_03 \
-    --bfd_database_path=/alphafold-data/alphafold/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt \
-    --pdb70_database_path=/alphafold-data/alphafold/pdb70/pdb70 \
-    --template_mmcif_dir=/alphafold-data/alphafold/pdb_mmcif/mmcif_files/ \
-    --obsolete_pdbs_path=/alphafold-data/alphafold/pdb_mmcif/obsolete.dat
+    --bfd_database_path="/alphafold/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt" \
+    --mgnify_database_path="/alphafold/mgnify/mgy_clusters_2022_05.fa" \
+    --obsolete_pdbs_path="/alphafold/pdb_mmcif/obsolete.dat" \
+    --pdb70_database_path="/alphafold/pdb70/pdb70" \
+    --template_mmcif_dir="/alphafold/pdb_mmcif/mmcif_files/" \
+    --uniclust30_database_path="/alphafold/uniref30/UniRef30_2021_03" \
+    --uniref90_database_path="/alphafold/uniref90/uniref90.fasta"
 
 exit 0
