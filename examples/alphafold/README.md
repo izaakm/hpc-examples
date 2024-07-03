@@ -1,6 +1,21 @@
-% AlphaFold
+% How to use AlphaFold2 on ISAAC-NG
 
-1. Download reference data
+Load the environment module:
+
+```bash
+module load alphafold/2.0.0
+```
+
+Verify the image:
+
+```bash
+echo $ALPHAFOLD_IMAGE
+```
+
+[TODO] Download reference data
+
+AlphaFold2 Help
+===============
 
 ```
 $ ALPHAFOLD=/sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif
