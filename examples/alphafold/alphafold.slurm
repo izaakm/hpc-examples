@@ -13,21 +13,11 @@ source /usr/share/Modules/init/bash
 module load alphafold/2.0.0
 export ALPHAFOLD_IMAGE=${ALPHAFOLD_IMAGE:-/sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif}
 
-# --data_dir=/alphafold-downloads
-# export DATADIR="/lustre/isaac/examples/data/"
-
-# --uniref90_database_path=/alphafold-data/alphafold/uniref90/uniref90.fasta
-# --mgnify_database_path=/alphafold-data/alphafold/mgnify/mgy_clusters_2022_05.fa
-# --uniclust30_database_path=/alphafold-data/alphafold/uniref30/UniRef30_2021_03
-# --bfd_database_path=/alphafold-data/alphafold/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt
-# --pdb70_database_path=/alphafold-data/alphafold/pdb70/pdb70
-# --template_mmcif_dir=/alphafold-data/alphafold/pdb_mmcif/mmcif_files/
-# --obsolete_pdbs_path=/alphafold-data/alphafold/pdb_mmcif/obsolete.dat
 export ALPHAFOLD_DIR="/lustre/isaac/examples/data/alphafold"
 
 # Input.
 # export FASTA="/lustre/isaac/examples/data/fasta/P01308.fasta"
-# export FASTA="<PATH TO YOUR FASTA>"
+# export FASTA="$SCRATCHDIR/<PATH TO YOUR FASTA>"
 export EXAMPLES_DIR="/lustre/isaac/examples"
 
 # Output.
