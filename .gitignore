@@ -5,3 +5,5 @@
 *.zip
 *.ipynb
 *.pdf
+*.tmp
+*TMP*
