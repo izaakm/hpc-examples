@@ -1,26 +1,20 @@
-#!/bin/bash -l
+#!/usr/bin/env bash
 #SBATCH --account ACF-UTK0011
-#SBATCH --partition campus-gpu-bigmem
+#SBATCH --partition campus-gpu-large
 #SBATCH --qos campus-gpu 
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --gpus 1
 #SBATCH --cpus-per-gpu 48
 #SBATCH --time 24:00:00
-#SBATCH --job-name alphafold-basic
-#SBATCH --chdir /lustre/isaac/scratch/jmill165
-#SBATCH --output jobs/latest/%j-%x.o
-###SBATCH --export ALL,SHELL=/bin/bash
-###SBATCH --exclusive
-
+#SBATCH --job-name alphafold-example
 
 source /usr/share/Modules/init/bash
 module load alphafold/2.0.0
-# export ALPHAFOLD_IMAGE=${ALPHAFOLD_IMAGE:-/sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif}
-
+export ALPHAFOLD_IMAGE=${ALPHAFOLD_IMAGE:-/sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif}
 
 # --data_dir=/alphafold-downloads
-export DATADIR="/lustre/isaac/examples/data/"
+# export DATADIR="/lustre/isaac/examples/data/"
 
 # --uniref90_database_path=/alphafold-data/alphafold/uniref90/uniref90.fasta
 # --mgnify_database_path=/alphafold-data/alphafold/mgnify/mgy_clusters_2022_05.fa
@@ -32,33 +26,34 @@ export DATADIR="/lustre/isaac/examples/data/"
 export ALPHAFOLD_DIR="/lustre/isaac/examples/data/alphafold"
 
 # Input.
-# export FASTA="/nfs/home/jmill165/data/downloads/P01308.fasta"
-export FASTA="/lustre/isaac/scratch/jmill165/examples/examples/alphafold/P01308.fasta"
+# export FASTA="/lustre/isaac/examples/data/fasta/P01308.fasta"
+# export FASTA="<PATH TO YOUR FASTA>"
+export EXAMPLES_DIR="/lustre/isaac/examples"
 
 # Output.
-export OUTPUT_DIR="/lustre/isaac/scratch/jmill165/data/outputs/alphafold/$(date +%s)"
+export OUTPUT_DIR="$SCRATCHDIR/data/outputs/alphafold/$(date +%s)"
 
 mkdir -pv $OUTPUT_DIR
 
 singularity \
     exec \
     --nv \
-    -B $OUTPUT_DIR:/output \
-    -B $ALPHAFOLD_DIR:/alphafold \
-    -B .:/etc \
-    /sw/isaac/applications/alphafold/2.0.0/singularity_image/alphafold2.sif \
+    --bind $EXAMPLES_DIR:/examples \
+    --bind $ALPHAFOLD_DIR:/alphafold \
+    --bind $(mktemp -d):/etc \
+    "$ALPHAFOLD_IMAGE" \
     /app/run_alphafold.sh \
-    --fasta_paths="$FASTA" \
     --data_dir="/alphafold" \
-    --output_dir=/output \
-    --model_names=model_1 \
-    --max_template_date=2020-05-14 \
     --bfd_database_path="/alphafold/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt" \
     --mgnify_database_path="/alphafold/mgnify/mgy_clusters_2022_05.fa" \
     --obsolete_pdbs_path="/alphafold/pdb_mmcif/obsolete.dat" \
     --pdb70_database_path="/alphafold/pdb70/pdb70" \
     --template_mmcif_dir="/alphafold/pdb_mmcif/mmcif_files/" \
     --uniclust30_database_path="/alphafold/uniref30/UniRef30_2021_03" \
-    --uniref90_database_path="/alphafold/uniref90/uniref90.fasta"
+    --uniref90_database_path="/alphafold/uniref90/uniref90.fasta" \
+    --model_names=model_1 \
+    --max_template_date=2020-05-14 \
+    --output_dir="$OUTPUT_DIR" \
+    --fasta_paths="/examples/data/fasta/P01308.fasta"
 
 exit 0
