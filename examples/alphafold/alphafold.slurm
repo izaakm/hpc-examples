@@ -35,6 +35,16 @@ export OUTPUT_DIR="$SCRATCHDIR/data/outputs/alphafold/$(date +%s)"
 
 mkdir -pv $OUTPUT_DIR
 
+# ACCESSING EXTERNAL FILES WITHIN CONTAINERS
+# By default, Singularity bind mounts the $HOME, /tmp, and $PWD directories
+# within the container at runtime. On Open Enclave resources the user's $HOME
+# and $SCRATCHDIR directories are bind mounted within the container at runtime.
+#
+# Therefore, these changes will persist once the container exits.
+# 
+# If additional external locations are needed from within the container, the
+# --bind option can be used to define the additional bind mounts.
+
 singularity \
     exec \
     --nv \
