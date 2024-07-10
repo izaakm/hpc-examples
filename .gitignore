@@ -2,6 +2,7 @@
 *.e
 *.err
 *.ipynb
+*.json
 *.o
 *.out
 *.pdf
