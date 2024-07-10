@@ -5,6 +5,83 @@ How to set up your json file for AlphaFold3 (AlphaFold Server)
 
 Source: [google-deepmind/alphafold/server] on GitHub
 
+Submit your proteins to AlphaFold3 Server
+=========================================
+
+1. Go to [alphafoldserver.com][]
+    - > Remaining jobs refresh each day
+    - > Jobs can be up to 5,000 tokens - see more details on token calculation,
+      > accepted formats, seed selection and other features in our FAQ
+1. Click "Upload JSON"
+
+    > You can create up to 100 jobs. All uploaded jobs are saved as drafts in
+    > history.
+    >
+    > Each saved draft has a JSON file you can reuse. Please refer to this example
+    > for JSON file syntax and refer to our FAQs.
+
+1. About the JSON file:
+    - `name`: Allowed characters are: letters, numbers, spaces, dashes, underscores, colons.
+1. Click "Submit [...] jobs as drafts"
+1. Click "Continue and preview job"
+
+About the results
+=================
+
+[How can I interpret confidence metrics to check the accuracy of structures?][_1]
+---------------------------------------------------------------------------------
+
+Similar to AlphaFold2 and AlphaFold-Multimer, outputs include confidence
+metrics. The main metrics are:
+
+- **pLDDT**: a per-atom confidence estimate on a 0-100 scale where a higher
+  value indicates higher confidence. pLDDT aims to predict a modified LDDT
+  score that only considers distances to polymers. For proteins this is similar
+  to the [lDDT-Cα metric] but with more granularity as it can vary per atom not
+  just per residue. For ligand atoms the modified LDDT considers the errors
+  only between the ligand atom and polymers not other ligand atoms, and for
+  DNA/RNA a wider radius of 30A is used for the modified LDDT instead of 15A.
+  The pLDDT is shown as color outputs in the image of the structure, using the
+  same value to color mapping as in AFDB.
+- **PAE (predicted aligned error)**: estimate of the error in the relative
+  position and orientation between two tokens in the predicted structure.
+  Higher values indicate higher predicted error and therefore lower confidence.
+  For proteins and nucleic acids, PAE score is essentially the same as
+  AlphaFold2, where the error is measured relative to frames constructed from
+  the protein backbone. For small molecules and post-translational
+  modifications, a frame is constructed for each atom from its closest
+  neighbors from a reference conformer.
+- **pTM and ipTM scores**: the predicted template modeling (pTM) score and the
+  interface predicted template modeling (ipTM) score are both derived from a
+  measure called the template modeling (TM) score. This measures the accuracy
+  of the entire structure ([Zhang and Skolnick, 2004]; [Xu and Zhang, 2010]). A
+  pTM score above 0.5 means the overall predicted fold for the complex might be
+  similar to the true structure. ipTM measures the accuracy of the predicted
+  relative positions of the subunits within the complex. Values higher than 0.8
+  represent confident high-quality predictions, while values below 0.6 suggest
+  likely a failed prediction. ipTM values between 0.6 and 0.8 are a gray zone
+  where predictions could be correct or incorrect. TM score is very strict for
+  small structures or short chains, so pTM assigns values less than 0.05 when
+  fewer than 20 tokens are involved; for these cases PAE or pLDDT may be more
+  indicative of prediction quality.
+
+For detailed description of these confidence metrics see our [paper]. For
+protein components, the [AlphaFold: A Practical guide] course for structures
+provides additional tutorials on the confidence metrics.
+
+If you are interested in a specific entity or interaction, then there are
+confidences available in the downloadable outputs that are specific to each
+chain or chain-pair, as opposed to the full complex. See [json section] for
+more details on all the confidence metrics that are returned.
+
+[_1]: https://alphafoldserver.com/faq#how-can-i-interpret-confidence-metrics-to-check-the-accuracy-of-structures
+[lDDT-Cα metric]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3799472/
+[Zhang and Skolnick, 2004]: https://doi.org/10.1002/prot.20264
+[Xu and Zhang, 2010]: https://doi.org/10.1093/bioinformatics/btq066
+[paper]: https://www.nature.com/articles/s41586-024-07487-w
+[AlphaFold: A Practical guide]: https://www.ebi.ac.uk/training/online/courses/alphafold/inputs-and-outputs/evaluating-alphafolds-predicted-structures-using-confidence-scores/
+[json section]: https://alphafoldserver.com/faq#how-do-i-interpret-all-the-outputs-in-the-downloaded-json-files
+
 
 JSON file format for AlphaFold Server jobs
 ==========================================
