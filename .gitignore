@@ -11,4 +11,5 @@
 *.xls*
 *.zip
 *TMP*
+.DS_Store
 tmp/
