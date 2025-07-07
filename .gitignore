@@ -1,3 +1,6 @@
+*
+.*
+
 *.csv
 *.e
 *.err
@@ -13,3 +16,10 @@
 *TMP*
 .DS_Store
 tmp/
+
+!.gitignore
+!LICENSE
+!*.md
+!*.slurm
+!*.sh
+!*.py
