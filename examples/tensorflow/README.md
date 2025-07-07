@@ -1,19 +1,8 @@
+# Installing tensorflow in a conda environment
 
-# Conda
+Get an interactive session on a GPU node.
 
-https://docs.anaconda.com/free/working-with-conda/applications/tensorflow/
-
-# Pip
-
-https://www.tensorflow.org/install/pip
-https://discuss.tensorflow.org/t/tensorflow-2-13-0-does-not-find-gpu-with-cuda-12-1/18939/13
-https://pypi.org/project/tensorflow/
-https://github.com/tensorflow/tensorflow/issues/62075
-https://pypi.org/project/tensorflow-gpu/
-
-Get an interactive session on a compute node.
-
-```
+```sh
 salloc \
     --account=ACF-UTK0011 \
     --nodes=1 \
@@ -27,12 +16,56 @@ ssh <your compute node>
 
 Load the anaconda module.
 
-```
+```sh
 module load anaconda3
 source $ANACONDA_SH
 ```
 
+## Conda
+
 Create a conda environment and install tensorflow:
+
+```sh
+conda create --name tf tensorflow
+conda activate tf
+```
+
+## Pip
+
+Create a conda environment:
+
+```sh
+conda create --name tf python pip
+conda activate tf
+```
+
+```sh
+# For GPU users
+pip install tensorflow[and-cuda]
+```
+
+```sh
+# For CPU users
+pip install tensorflow
+```
+
+```sh
+conda create --prefix $SCRATCHDIR/.conda/envs/tf tensorflow
+#                                                ^ The packages to install.
+#                     ^ The directory where the packages will be installed.
+```
+
+# Verify installation
+
+```sh
+# For CPU users
+python3 -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+```
+
+```sh
+# For GPU users
+python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+```
 
 <!-- {{{
 ********************************************
@@ -52,10 +85,14 @@ pip install tensorflow-gpu[and-cuda]
 ```
 }}} -->
 
-```sh
-conda create --prefex $SCRATCHDIR/.conda/envs/tf tensorflow
-#                     ^                          ^ The packages to install.
-#                     ^ The directory where the packages will be installed.
-```
+<!--<https://docs.anaconda.com/free/working-with-conda/applications/tensorflow/>-->
+
+[conda-tensorflow]: <https://www.anaconda.com/docs/tools/working-with-conda/applications/tensorflow>
+[pip-tensorflow]: <https://www.tensorflow.org/install/pip>
+[pypi-tensorflow]: <https://pypi.org/project/tensorflow/>
+[pypi-tensorflow-gpu]: <https://pypi.org/project/tensorflow-gpu/>
+[ref1]: <https://discuss.tensorflow.org/t/tensorflow-2-13-0-does-not-find-gpu-with-cuda-12-1/18939/13>
+[ref2]: <https://github.com/tensorflow/tensorflow/issues/62075>
+
 
 <!-- END -->
