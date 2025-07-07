@@ -30,6 +30,16 @@ conda create --name tf tensorflow
 conda activate tf
 ```
 
+
+> [!NOTE]
+> [TensorFlow GPU with conda is only available though version 2.4.1
+> (2021).][conda-tensorflow]
+
+
+> [!NOTE]
+> [Install tensorflow from conda-forge.][conda-forge-tensorflow]
+
+
 ## Pip
 
 Create a conda environment:
@@ -88,6 +98,7 @@ pip install tensorflow-gpu[and-cuda]
 <!--<https://docs.anaconda.com/free/working-with-conda/applications/tensorflow/>-->
 
 [conda-tensorflow]: <https://www.anaconda.com/docs/tools/working-with-conda/applications/tensorflow>
+[conda-forge-tensorflow]: https://anaconda.org/conda-forge/tensorflow
 [pip-tensorflow]: <https://www.tensorflow.org/install/pip>
 [pypi-tensorflow]: <https://pypi.org/project/tensorflow/>
 [pypi-tensorflow-gpu]: <https://pypi.org/project/tensorflow-gpu/>
