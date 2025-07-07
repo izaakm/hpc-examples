@@ -1,5 +1,7 @@
 # Installing tensorflow in a conda environment
 
+## For ISAAC-NG
+
 Get an interactive session on a GPU node.
 
 ```sh
@@ -17,7 +19,7 @@ ssh <your compute node>
 Load the anaconda module.
 
 ```sh
-module load anaconda3
+module load anaconda3/2024.06
 source $ANACONDA_SH
 ```
 
@@ -31,13 +33,11 @@ conda activate tf
 ```
 
 
-> [!NOTE]
-> [TensorFlow GPU with conda is only available though version 2.4.1
-> (2021).][conda-tensorflow]
+***[TensorFlow GPU with conda is only available though version 2.4.1
+(2021).][conda-tensorflow]***
 
 
-> [!NOTE]
-> [Install tensorflow from conda-forge.][conda-forge-tensorflow]
+***[Install tensorflow from conda-forge.][conda-forge-tensorflow]***
 
 
 ## Pip
